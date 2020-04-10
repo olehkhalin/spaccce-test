@@ -34,7 +34,7 @@ function SEO({ description, lang, meta, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const ogImage = site.siteMetadata.siteUrl.concat(ogImageDefault.childImageSharp.fixed.src)
+  const ogImage = ogImageDefault.childImageSharp.fixed.src
 
   return (
     <Helmet
