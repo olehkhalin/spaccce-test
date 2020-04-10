@@ -1,0 +1,445 @@
+@import "./breakpoints.scss"
+
+$font: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
+
+// Colors
+$black: #242424
+$white: #fff
+$gray: #E5E5E5
+$grayBorder: #EFEFEF
+$lightGray: #888888
+$blue: #155DE8
+$blueGradient: #1DA6FB
+
+body,
+html
+	user-select: none
+	background: $gray
+	overscroll-behavior: none
+	margin: 0
+	font-family: $font
+	font-size: 18px
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	//visibility: hidden
+
+.container
+	width: 1560px
+	min-width: 1560px
+	margin: 0 auto
+	height: 100%
+	@include media("<=1560px")
+		width: 1280px
+		min-width: 1280px
+	@include media("<=desktop")
+		width: 1080px
+		min-width: 1080px
+	@include media("<=1080px")
+		width: 100%
+		min-width: 100%
+	.row
+		display: flex
+		height: 100%
+		padding: 0 32px
+		@include media("<=phone")
+			padding: 0 16px
+	.v-center
+		align-items: center
+	.space-between
+		justify-content: space-between
+	.space-around
+		justify-content: space-around
+
+.container-fluid
+	width: 100%
+	height: 100%
+	.row
+		display: flex
+		height: 100%
+
+
+// Form component
+.main-form
+	&__content
+		margin-bottom: 20px
+		input
+			width: 320px
+			padding: 20px
+			border-radius: 4px
+			border: solid 1px $grayBorder
+			background-color: $white
+			font-size: 1rem
+			line-height: 1.11
+			margin-right: 20px
+			@include media("<=phone")
+				width: 100%
+				margin-right: 0
+				margin-bottom: 10px
+			&::placeholder
+				color: $lightGray
+	&__text
+		font-size: .778rem
+		line-height: 1.43
+		color: $lightGray
+		@include media("<=phone")
+			text-align: center
+			font-size: 0.667rem
+			line-height: 1.67
+		span
+			font-weight: bold
+			@include media("<=phone")
+				display: block
+	&.secondary
+		.main-form__text
+			opacity: 0.6
+			color: $white
+.button
+	padding: 20px
+	border-radius: 4px
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1)
+	background-color: $blue
+	font-size: 1rem
+	font-weight: bold
+	line-height: 1.11
+	color: $white
+	border-color: $blue
+	cursor: pointer
+	@include media("<=phone")
+		width: 100%
+	&.secondary
+		background-color: $white
+		border-color: $white
+		color: $black
+
+// Copied link toggle
+.link-copied
+	font-size: 1rem
+	font-weight: bold
+	line-height: 1.11
+	color: $white
+	padding: 10px 20px
+	border-radius: 10px
+	background-color: #219653
+	opacity: 0
+	z-index: -1
+	position: fixed
+	bottom: 20px
+	left: 20px
+	transition: opacity .3s, z-index 0s .3s
+	&.active
+		opacity: 1
+		z-index: 5
+		transition: opacity .3s, z-index 0s
+
+// Top line
+.top-line
+	background: linear-gradient(13.86deg, $blue 36.41%, $blueGradient 100%)
+	font-size: .778rem
+	color: $white
+	@include media("<=phone")
+		display: none
+	&__inner
+		font-weight: bold
+		line-height: 30px
+		span
+			font-weight: normal
+
+// Header
+.header
+	height: 60px
+	border: solid 1px $grayBorder
+	background-color: $white
+	width: 100%
+	&-wrapper
+		position: fixed
+		top: 0
+		left: 0
+		width: 100%
+		z-index: 4
+	svg
+		height: 20px
+		width: auto
+	.logo
+		a
+			display: flex
+			align-items: center
+	.share
+		font-size: .778rem
+		font-weight: bold
+		color: $blue
+		cursor: pointer
+		line-height: 60px
+		padding-left: 20px
+		padding-right: 20px
+		margin-right: -20px
+		position: relative
+		span
+			display: flex
+			align-items: center
+			transition: opacity .3s
+		svg
+			margin-right: 10px
+			height: 20px
+			width: 20px
+		&:hover
+			span
+				opacity: .6
+			.share-more
+				opacity: 1
+				z-index: 1
+				transform: translateY(0)
+				transition: opacity .3s, z-index 0s, transform 0s
+		&-more
+			position: absolute
+			top: calc(100% - 1px)
+			right: 20px
+			margin: 0
+			padding: 0
+			padding-top: 10px
+			padding-bottom: 10px
+			background-color: $white
+			border-radius: 4px
+			box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.04)
+			opacity: 0
+			z-index: -1
+			transform: translateY(-100%)
+			transition: opacity .3s, z-index 0s .3s, transform 0s .3s
+			li
+				list-style-type: none
+				margin: 0
+				padding: 11px 30px 11px 20px
+				display: flex
+				align-items: center
+				line-height: 1.43
+				font-size: .778rem
+				a
+					display: flex
+					text-decoration: none
+				svg
+					margin-right: 10px
+				&.link
+					color: #219653
+				&.facebook
+					a
+						color: #4267b2
+				&.twitter
+					a
+						color: #1da1f2
+
+// First screen
+.first-screen
+	padding-top: 150px
+	padding-bottom: 80px
+	text-align: center
+	@include media("<=phone")
+		text-align: left
+		padding-top: 100px
+		padding-bottom: 40px
+	&__content
+		max-width: 970px
+		h1
+			margin: 0
+			padding: 0
+			font-size: 3.111rem
+			font-weight: 900
+			line-height: 1.25
+			@include media("<=phone")
+				font-size: 1.778rem
+				line-height: 1.38
+			span
+				font-weight: normal
+		h4
+			margin: 0
+			padding: 0
+			line-height: 1.46
+			font-size: 1.333rem
+			font-weight: normal
+			margin-top: 20px
+			margin-bottom: 40px
+			@include media("<=phone")
+				font-size: 1rem
+				line-height: 1.67
+				margin-bottom: 20px
+			span
+				font-weight: bold
+
+// Video screen
+.video
+	video
+		width: 100%
+		border-radius: 4px
+		box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.1)
+		border: solid 1px $grayBorder
+		background-color: $white
+		@include media("<=phone")
+			width: 100vw
+
+// Question
+.question
+	padding: 180px 0
+	@include media("<=phone")
+		padding: 80px 0
+	&.light
+		border: solid 1px $grayBorder
+		background-color: $white
+	&-item
+		width: 100%
+	&-quest
+		font-size: 2.667rem
+		font-weight: 900
+		line-height: 1.25
+		color: $black
+		margin: 0
+		padding: 0
+		margin-bottom: 20px
+		@include media("<=phone")
+			font-size: 1.778rem
+	&-answer
+		margin: 0
+		padding: 0
+		font-size: 1.333rem
+		line-height: 1.67
+		color: $black
+		span
+			font-weight: bold
+	&-steps
+		display: flex
+		width: 100%
+		margin-top: 55px
+		@include media("<=phone")
+			flex-direction: column
+			margin-top: 45px
+		&__item
+			width: 20%
+			@include media("<=phone")
+				width: 100%
+				display: flex
+				justify-content: space-between
+				br
+					display: none
+			&-top
+				position: relative
+				width: 100%
+				@include media("<=phone")
+					order: 2
+					flex-grow: 0
+					width: max-content
+				&__inner
+					width: 37.5px
+					height: 37.5px
+					border: solid 2px #fafafa
+					background-color: $blue
+					display: flex
+					align-items: center
+					justify-content: center
+					border-radius: 50%
+					font-size: 1rem
+					font-weight: bold
+					color: $white
+					position: relative
+					z-index: 2
+					@include media("<=phone")
+						margin-left: auto
+						margin-top: -5px
+				&::before
+					content: ''
+					position: absolute
+					top: 50%
+					left: 0
+					width: 100%
+					opacity: 0.4
+					background-color: #1161e0
+					height: 2px
+					@include media("<=phone")
+						width: 2px
+						height: 100%
+						top: 0
+						left: 50%
+			&:last-child
+				.question-steps__item-top::before
+					display: none
+			&-bottom
+				margin: 0
+				padding: 0
+				padding-top: 25px
+				font-size: 1rem
+				font-weight: normal
+				line-height: 1.67
+				color: $black
+				@include media("<=phone")
+					padding-top: 0
+					padding-bottom: 40px
+			span
+				font-weight: bold
+
+// CTA screen
+.cta-screen
+	padding-bottom: 35px
+	&__content
+		width: 100%
+		display: flex
+		justify-content: center
+		align-items: center
+		flex-direction: column
+		text-align: center
+		background: linear-gradient(76.76deg, $blue 0%, $blueGradient 100%)
+		box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.1)
+		border-radius: 4px
+		padding-top: 80px
+		padding-bottom: 80px
+		padding-left: 20px
+		padding-right: 20px
+		@include media("<=phone")
+			padding-top: 40px
+			padding-bottom: 40px
+		h2
+			color: $white
+			font-size: 2.667rem
+			font-weight: 900
+			line-height: 1.25
+			margin: 0
+			padding: 0
+			display: flex
+			align-items: center
+			margin-bottom: 20px
+			@include media("<=phone")
+				font-size: 1.778rem
+			svg
+				height: 50px
+				margin-left: 40px
+				@include media("<=phone")
+					height: 32px
+					margin-left: 20px
+				path
+					fill: $white
+		h5
+			font-size: 1.333rem
+			font-weight: normal
+			line-height: 1.67
+			color: $white
+			margin: 0
+			padding: 0
+			margin-bottom: 40px
+
+// footer
+.footer
+	height: 110px
+	font-size: 0.778rem
+	color: $lightGray
+	text-transform: capitalize
+	@include media("<=phone")
+		.row
+			display: flex
+			flex-direction: column
+			justify-content: center
+	svg
+		height: 20px
+		width: auto
+		@include media("<=phone")
+			height: 35px
+	.logo
+		@include media("<=phone")
+			margin-bottom: 20px
+		a
+			display: flex
+			align-items: center
