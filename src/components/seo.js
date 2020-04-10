@@ -9,10 +9,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import defaultImage from "../images/spaccce.jpg"
+// import defaultImage from "../images/spaccce.jpg"
 
 function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+  const { site, ogImageDefault } = useStaticQuery(
     graphql`
       query {
         site {
@@ -22,11 +22,19 @@ function SEO({ description, lang, meta, title }) {
             author
           }
         }
+        ogImageDefault: file(relativePath: {eq: "spaccce.jpg"}) {
+            childImageSharp {
+                fixed(height: 630, width: 1200) {
+                    src
+                }
+            }
+        }
       }
     `
   )
 
   const metaDescription = description || site.siteMetadata.description
+  const ogImage = site.siteMetadata.siteUrl.concat(ogImageDefault.childImageSharp.fixed.src)
 
   return (
     <Helmet
@@ -54,7 +62,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: defaultImage,
+          content: ogImage,
         },
         {
           name: `twitter:card`,
@@ -74,7 +82,11 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:image`,
-          content: defaultImage,
+          content: ogImage,
+        },
+        {
+          property: `image`,
+          content: ogImage,
         },
       ].concat(meta)}
     />
@@ -85,7 +97,6 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
-  image: null,
 }
 
 SEO.propTypes = {
@@ -93,7 +104,6 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-  image: PropTypes.string,
 }
 
 export default SEO
