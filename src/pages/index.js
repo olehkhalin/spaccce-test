@@ -24,7 +24,7 @@ const questionSteps = [
 
 const IndexPage = () => (
   <>
-    <SEO title="Home" />
+    <SEO title="Web store builder" />
     <Header />
     <FirstScreen />
     <Video />

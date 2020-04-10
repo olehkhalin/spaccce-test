@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Web store builder | Create online store easily`,
+    title: `Create online store easily`,
     description: `Do you have a business and you need a site to evolve it? Or do you need a site to run a new business? Join the Spaccce will help you.`,
     author: `@spaccce`,
   },

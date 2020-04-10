@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect } from "react"
 import SpaccceLogo from "../images/spaccce.svg"
 import ShareArrow from "../images/share-arrow.svg"
 import CopyLink from "../images/copy-link.svg"
@@ -13,12 +13,17 @@ import Twitter from "../images/twitter.svg"
 // import SEO from "./seo"
 import TopLine from "./topLine"
 
-const Header = ({ location }) => {
+const Header = () => {
   const [headerStyle, setHeaderStyle] = useState({
     transition: "all 200ms ease-in",
   })
 
   const [copied, setCopied] = useState(false)
+  const [location, setLocation] = useState('');
+
+  useEffect(() => {
+    setLocation(window.location.href);
+  }, [])
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -79,7 +84,7 @@ const Header = ({ location }) => {
                   </span>
                   <ul className="share-more">
                     <CopyToClipboard
-                      text={window.location.href}
+                      text={location}
                       onCopy={() => copyClicked()}
                     >
                       <li className="link">
@@ -92,7 +97,7 @@ const Header = ({ location }) => {
                         onClick={e => socialShareClicked(e, "Facebook")}
                         href={
                           "https://www.facebook.com/sharer/sharer.php?u=" +
-                          window.location.href
+                          location
                         }
                       >
                         <Facebook />
@@ -104,11 +109,11 @@ const Header = ({ location }) => {
                         onClick={e => socialShareClicked(e, "Twitter")}
                         href={
                           "https://twitter.com/intent/tweet?original_referer=" +
-                          window.location.href +
+                          location +
                           ";text=I just signed up for the \n" +
                           "@spaccce\n" +
                           " Web Beta. Learn more and sign up for the waiting list here:;url=" +
-                          window.location.href
+                          location
                         }
                       >
                         <Twitter />
@@ -123,7 +128,7 @@ const Header = ({ location }) => {
         </div>
       </>
     ),
-    [copied, headerStyle]
+    [copied, headerStyle, location]
   )
 }
 
