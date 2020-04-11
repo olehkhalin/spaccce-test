@@ -62,6 +62,8 @@ html
 		margin-bottom: 20px
 		display: flex
 		justify-content: center
+		@include media("<=phone")
+			flex-wrap: wrap
 		input
 			width: 320px
 			padding: 20px
