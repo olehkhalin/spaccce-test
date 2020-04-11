@@ -51,13 +51,16 @@ const Form = ({ formClass }) => {
     // fetchUrl().then(() => {
     //   console.log(submitStatus)
     // })
-    axios({
+    axios.post(url, {
       method: "post",
-      url: url,
       data: JSON.stringify(dataT),
+      auth: {
+        username: username,
+        password: password
+      },
       headers: {
         "Content-Type": "application/json",
-        authentication: `${username}:${password}`,
+        'Access-Control-Allow-Origin': '*'
       },
     })
       .then(r => {
