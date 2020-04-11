@@ -18,19 +18,17 @@ html
 	overscroll-behavior: none
 	margin: 0
 	font-family: $font
+	color: $black
 	font-size: 18px
 	-webkit-font-smoothing: antialiased
 	-moz-osx-font-smoothing: grayscale
 	//visibility: hidden
 
 .container
-	width: 1560px
-	min-width: 1560px
+	width: 1170px
+	min-width: 1170px
 	margin: 0 auto
 	height: 100%
-	@include media("<=1560px")
-		width: 1280px
-		min-width: 1280px
 	@include media("<=desktop")
 		width: 1080px
 		min-width: 1080px
@@ -71,6 +69,9 @@ html
 			font-size: 1rem
 			line-height: 1.11
 			margin-right: 20px
+			outline: none
+			&:focus
+				border-color: $blue
 			@include media("<=phone")
 				width: 100%
 				margin-right: 0
@@ -90,13 +91,17 @@ html
 			@include media("<=phone")
 				display: block
 	&.secondary
-		.main-form__text
-			opacity: 0.6
-			color: $white
+		.main-form
+			&__text
+				opacity: 0.6
+				color: $white
+			&__content
+				input
+					&:focus
+						border-color: $grayBorder
 .button
 	padding: 20px
 	border-radius: 4px
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1)
 	background-color: $blue
 	font-size: 1rem
 	font-weight: bold
@@ -104,6 +109,7 @@ html
 	color: $white
 	border-color: $blue
 	cursor: pointer
+	outline: none
 	@include media("<=phone")
 		width: 100%
 	&.secondary
@@ -181,7 +187,7 @@ html
 			margin-right: 10px
 			height: 20px
 			width: 20px
-		&:hover
+		&.active
 			span
 				opacity: .6
 			.share-more
@@ -420,6 +426,8 @@ html
 			margin: 0
 			padding: 0
 			margin-bottom: 40px
+			@include media("<=phone")
+				font-size: 1rem
 
 // footer
 .footer

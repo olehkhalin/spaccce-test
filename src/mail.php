@@ -1,7 +1,7 @@
 $user = 'olegkhalin18@gmail.com';
 $password = '001132Khalin';
 // $first_name = 'Vasiliy';
-$email = 'test@mail.com';	// email контакта
+$email = 'sdafdsafdsaf@mail.com';	// email контакта
 // $sms = '380991236543';	// номер телефона
 $subscribe_contact_url = 'https://esputnik.com/api/v1/contact/subscribe';
 

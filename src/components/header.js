@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import { CopyToClipboard } from "react-copy-to-clipboard"
+import { isMobile } from "react-device-detect"
 
 import React, { useState, useMemo, useEffect } from "react"
 import SpaccceLogo from "../images/spaccce.svg"
@@ -19,10 +20,10 @@ const Header = () => {
   })
 
   const [copied, setCopied] = useState(false)
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState("")
 
   useEffect(() => {
-    setLocation(window.location.href);
+    setLocation(window.location.href)
   }, [])
 
   useScrollPosition(
@@ -31,7 +32,6 @@ const Header = () => {
 
       const shouldBeStyle = {
         transition: `all 200ms ${isVisible ? "ease-in" : "ease-out"}`,
-        // transform: isVisible ? "none" : `translate(0, -30px)`,
         transform: isVisible
           ? "none"
           : `translate(0, -${
@@ -45,9 +45,8 @@ const Header = () => {
     },
     [headerStyle]
   )
-  // let handleTimeout;
-  const [timerr, setTimerr] = useState()
 
+  const [timerr, setTimerr] = useState()
   const copyClicked = () => {
     if (timerr) clearTimeout(timerr)
     setCopied(true)
@@ -56,6 +55,14 @@ const Header = () => {
         setCopied(false)
       }, 3000)
     )
+  }
+
+  const [shareState, setShareState] = useState(false)
+  const shareClicked = () => {
+    // console.log(isMobile)
+    // if (isMobile) {
+    setShareState(!shareState)
+    // }
   }
 
   const socialShareClicked = (e, target) => {
@@ -78,8 +85,12 @@ const Header = () => {
                     <SpaccceLogo />
                   </Link>
                 </div>
-                <div className="share">
-                  <span>
+                <div
+                  className={"share " + (shareState ? "active" : null)}
+                  onMouseEnter={!isMobile ? () => shareClicked() : null}
+                  onMouseLeave={!isMobile ? () => shareClicked() : null}
+                >
+                  <span onClick={isMobile ? () => shareClicked() : null}>
                     <ShareArrow /> Share
                   </span>
                   <ul className="share-more">
@@ -128,7 +139,7 @@ const Header = () => {
         </div>
       </>
     ),
-    [copied, headerStyle, location]
+    [copied, headerStyle, location, shareState]
   )
 }
 

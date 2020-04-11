@@ -16,7 +16,7 @@ const Form = ({ formClass }) => {
 
   return (
     <div className={"main-form " + formClass}>
-      <form className="main-form__content"  onSubmit={e => handleSubmit(e)}>
+      <form className="main-form__content"  method="post" action="localhost:3000/contact">
         <input
           id="email"
           type="email"
