@@ -1,113 +1,75 @@
 import PropTypes from "prop-types"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import axios from "axios"
 
-const username = "olegkhalin18@gmail.com"
-const password = "001132Khalin"
-const url = "https://esputnik.com/api/v1/contact/subscribe"
-const dataT = {
-  contact: {
-    channels: {
-      type: "email",
-      value: "asdfdsafasdsda@mail.mail",
-    },
-  },
-}
+const checkedIcon = `<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.61143 4.8L5.71429 8.7919L14.3886 0L16 1.59838L5.71429 12L0 6.39838L1.61143 4.8Z" fill="white"/></svg>`
 
 const Form = ({ formClass }) => {
-  const [submitStatus, setSubmitStatus] = useState("standby")
+  const [serverState, setServerState] = useState(null)
 
-  // async function fetchUrl() {
-  // const response = await fetch(url, {
-  //   method: "POST", // *GET, POST, PUT, DELETE, etc.
-  //   // mode: "cors", // no-cors, cors, *same-origin
-  //   // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-  //   // credentials: "omit", // include, *same-origin, omit
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: `${username}:${password}`,
-  //   },
-  //   // redirect: "follow", // manual, *folslow, error
-  //   // referrer: "client", // no-referrer, *client
-  //   body: JSON.stringify(dataT), // body data type must match "Content-Type" header
-  // })
-  // const json = await response.json().then(() => {
-  //   console.log(response)
-  // })
-  // console.log(dataT)
-  // }
-
-  const handleSubmit = e => {
+  const handleOnSubmit = e => {
     e.preventDefault()
-    //   const data = new FormData(e.target);
-    //
-    //   fetch('/mail.php', {
-    //     method: 'POST',
-    //     body: data,
-    //   });
-    //
-    //   console.log(data.get('email'));
-    //   setSubmitStatus("working")
-    // fetchUrl().then(() => {
-    //   console.log(submitStatus)
-    // })
-    axios.post(url, {
+    const form = e.target
+    setServerState("submitting")
+    axios({
       method: "post",
-      data: JSON.stringify(dataT),
-      auth: {
-        username: username,
-        password: password
-      },
-      headers: {
-        "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': '*'
-      },
+      url: "https://getform.io/f/72b1a0d0-e87d-4c5c-aaba-2c60acdbf04d",
+      data: new FormData(form),
     })
       .then(r => {
-        console.log(r)
+        setServerState("success")
+        setTimeout(() => {
+          setServerState(null)
+          form.reset()
+        }, 5000)
       })
-      .catch(e => {
-        console.log(e)
+      .catch(r => {
+        setServerState("error")
+        setTimeout(() => {
+          setServerState(null)
+          form.reset()
+        }, 5000)
       })
   }
 
-  // const useFetchPost = submitClick => {
-  //
-  //
-  //   useEffect(() => {
-  //     if (submitClick) {
-  //       setSubmitStatus("working")
-  //       fetchUrl()
-  //     }
-  //   }, [submitClick])
-  //   return [submitStatus, setSubmitStatus]
-  // }
+  let formText = ""
+  if (serverState === null || serverState === "submitting") {
+    formText = `Free beta release scheduled for 01.08.2020. <span>Request to be the first!</span>`
+  } else {
+    formText = `<span>You’ll receive an email when your invite is ready</span>`
+  }
 
-  // console.log(JSON.stringify(dataT))
+  let buttonText = ""
+  if (serverState === null) {
+    buttonText = `Request for free beta invite`
+  } else if (serverState === "submitting") {
+    buttonText = `Loading...`
+  } else {
+    buttonText = checkedIcon + ` Invite requested`
+  }
 
   return (
     <div className={"main-form " + formClass}>
-      <form
-        className="main-form__content"
-        onSubmit={e => handleSubmit(e)}
-        // method="post"
-        // action="https://getform.io/f/72b1a0d0-e87d-4c5c-aaba-2c60acdbf04d"
-      >
+      <form className="main-form__content" onSubmit={e => handleOnSubmit(e)}>
         <input
           id="email"
           type="email"
           name="email"
           placeholder="Enter Email to join the waitlist"
+          disabled={serverState !== null}
           required
         />
-        <button type="submit" className={"button " + formClass}>
-          Request for free beta invite
-        </button>
+        <button
+          type="submit"
+          className={"button " + formClass}
+          disabled={serverState !== null}
+          dangerouslySetInnerHTML={{ __html: buttonText }}
+        ></button>
       </form>
-      <div className="main-form__text">
-        Free beta release scheduled for 01.08.2020.{" "}
-        <span>Request to be the first!</span>
-      </div>
+      <div
+        className="main-form__text"
+        dangerouslySetInnerHTML={{ __html: formText }}
+      ></div>
     </div>
   )
 }
