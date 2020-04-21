@@ -9,8 +9,7 @@ const FirstScreen = () => (
           <h1>
             <span>Hello 👋🏻</span>
             <br />
-            Create a professional online store
-            <br />
+            Create a professional online store <br />
             for you and your clients easily!
           </h1>
           <h4>

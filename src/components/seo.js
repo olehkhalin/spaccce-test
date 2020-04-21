@@ -24,7 +24,7 @@ function SEO({ description, lang, meta, title }) {
         }
         ogImageDefault: file(relativePath: {eq: "spaccce.jpg"}) {
             childImageSharp {
-                fixed(height: 630, width: 1200) {
+                fixed(height: 506, width: 1012) {
                     src
                 }
             }

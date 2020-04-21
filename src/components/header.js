@@ -108,7 +108,8 @@ const Header = () => {
                         onClick={e => socialShareClicked(e, "Facebook")}
                         href={
                           "https://www.facebook.com/sharer/sharer.php?u=" +
-                          location
+                          location +
+                          "&quote=I just signed up for the @spaccce  Web Beta. Learn more and sign up for the waiting list here:"
                         }
                       >
                         <Facebook />

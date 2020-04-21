@@ -85,7 +85,6 @@ html
 	&__text
 		font-size: .778rem
 		line-height: 1.43
-		color: $lightGray
 		@include media("<=phone")
 			text-align: center
 			font-size: 0.667rem
@@ -97,7 +96,6 @@ html
 	&.secondary
 		.main-form
 			&__text
-				opacity: 0.6
 				color: $white
 			&__content
 				input
@@ -266,6 +264,8 @@ html
 			@include media("<=phone")
 				font-size: 1.778rem
 				line-height: 1.38
+				br:last-of-type
+					display: none
 			span
 				font-weight: normal
 		h4
@@ -320,6 +320,8 @@ html
 		font-size: 1.333rem
 		line-height: 1.67
 		color: $black
+		@include media("<=phone")
+			font-size: 1rem
 		span
 			font-weight: bold
 	&-steps
@@ -414,21 +416,23 @@ html
 			padding-bottom: 40px
 		h2
 			color: $white
-			font-size: 2.667rem
+			font-size: 2.555rem
 			font-weight: 900
 			line-height: 1.25
 			margin: 0
 			padding: 0
 			display: flex
-			align-items: center
+			align-items: flex-end
 			margin-bottom: 20px
 			@include media("<=phone")
 				font-size: 1.778rem
 			svg
-				height: 50px
-				margin-left: 40px
+				width: 150px
+				height: auto
+				margin-left: 20px
+				margin-bottom: 2px
 				@include media("<=phone")
-					height: 32px
+					width: 108px
 					margin-left: 20px
 				path
 					fill: $white

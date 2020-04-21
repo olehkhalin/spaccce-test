@@ -11,7 +11,7 @@ const CTAScreen = () => (
             <h2>
               Try <SpaccceLogo />
             </h2>
-            <h5>Create a professional online store for you and your clients easily!</h5>
+            <h5>Get own space in the web for you and your clients</h5>
             <Form formClass="secondary" />
           </div>
         </div>
