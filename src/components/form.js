@@ -88,15 +88,17 @@ const Form = ({ formClass }) => {
   return (
     <div className={"main-form " + formClass}>
       <form className="main-form__content" onSubmit={e => handleSubmit(e)}>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          placeholder="Enter Email to join the waitlist"
-          disabled={serverState !== null}
-          required
-          onChange={e => handleChange(e)}
-        />
+        <label htmlFor={"email"+formClass}>
+          <input
+            id={"email"+formClass}
+            type="email"
+            name="email"
+            placeholder="Enter Email to join the waitlist"
+            disabled={serverState !== null}
+            required
+            onChange={e => handleChange(e)}
+          />
+        </label>
         <button
           type="submit"
           className={"button " + formClass}

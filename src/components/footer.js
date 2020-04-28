@@ -7,9 +7,9 @@ const Footer = () => (
     <div className="container">
       <div className="row v-center space-between">
         <div className="logo">
-          <Link to="/">
+          <span>
             <SpaccceLogo />
-          </Link>
+          </span>
         </div>
         <div className="copy">
           © {new Date().getFullYear()} Spaccce All rights reserved

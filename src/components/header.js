@@ -81,9 +81,9 @@ const Header = () => {
             <div className="container">
               <div className="row v-center space-between">
                 <div className="logo">
-                  <Link to="/">
+                  <span>
                     <SpaccceLogo />
-                  </Link>
+                  </span>
                 </div>
                 <div
                   className={"share " + (shareState ? "active" : null)}
