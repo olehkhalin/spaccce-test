@@ -37,7 +37,7 @@ function SEO({ description, lang, meta, title }) {
 
   useEffect(() => {
     setLocation(document.location.href);
-  })
+  }, [])
 
   const metaDescription = description || site.siteMetadata.description
   const ogImage = location + ogImageDefault.childImageSharp.fixed.src
