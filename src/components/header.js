@@ -123,7 +123,7 @@ const Header = () => {
                           "https://twitter.com/intent/tweet?original_referer=" +
                           location +
                           ";text=I just signed up for the \n" +
-                          "#spaccce\n" +
+                          "\#spaccce\n" +
                           " Web Beta. Learn more and sign up for the waiting list here:;url=" +
                           location +
                           " http:/www.spaccce.com/static/1a37e170636b1b0d461440a97783a29e/5e089/spaccce.jpg"
