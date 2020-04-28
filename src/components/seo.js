@@ -36,7 +36,7 @@ function SEO({ description, lang, meta, title }) {
   const [location, setLocation] = useState();
 
   useEffect(() => {
-    setLocation(document.location.href);
+    setLocation(document.location.origin);
   }, [])
 
   const metaDescription = description || site.siteMetadata.description
