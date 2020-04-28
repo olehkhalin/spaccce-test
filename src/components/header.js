@@ -109,7 +109,7 @@ const Header = () => {
                         href={
                           "https://www.facebook.com/sharer/sharer.php?u=" +
                           location +
-                          "&quote=I just signed up for the @spaccce  Web Beta. Learn more and sign up for the waiting list here:"
+                          "&quote=I just signed up for the #spaccce  Web Beta. Learn more and sign up for the waiting list here:"
                         }
                       >
                         <Facebook />
@@ -123,9 +123,10 @@ const Header = () => {
                           "https://twitter.com/intent/tweet?original_referer=" +
                           location +
                           ";text=I just signed up for the \n" +
-                          "@spaccce\n" +
+                          "#spaccce\n" +
                           " Web Beta. Learn more and sign up for the waiting list here:;url=" +
-                          location
+                          location +
+                          " http:/www.spaccce.com/static/1a37e170636b1b0d461440a97783a29e/5e089/spaccce.jpg"
                         }
                       >
                         <Twitter />
