@@ -65,7 +65,8 @@ html
 		@include media("<=phone")
 			flex-wrap: wrap
 		label
-			width: 100%
+			@include media("<=phone")
+				width: 100%
 		input
 			width: 320px
 			padding: 0 20px
